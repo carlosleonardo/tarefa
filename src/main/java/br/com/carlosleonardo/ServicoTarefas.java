@@ -32,4 +32,8 @@ public class ServicoTarefas {
         var tarefaNova = new TarefaRecord(tarefa.id(), tarefa.nome(), finalizada);
         tarefas.set(indice, tarefaNova);
     }
+
+    public List<TarefaRecord> listarTarefas() {
+        return new ArrayList<>(tarefas);
+    }
 }

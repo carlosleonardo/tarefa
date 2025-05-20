@@ -19,8 +19,9 @@ public class Tarefa {
             System.out.println("5 - Desmarcar tarefa como feita");
             System.out.println("6 - Listar tarefas feitas");
             System.out.println("7 - Listar tarefas não feitas");
-            System.out.println("8 - Salvar tarefas");
-            System.out.println("9 - Carregar tarefas");
+            System.out.println("8 - Listar todas as tarefas");
+            System.out.println("9 - Salvar tarefas");
+            System.out.println("10 - Carregar tarefas");
             System.out.println("0 - Sair");
             System.out.println("=========================");
             System.out.print("Escolha uma operação: ");
@@ -33,6 +34,9 @@ public class Tarefa {
                 case "5" -> System.out.println("Desmarcar tarefa como feita");
                 case "6" -> System.out.println("Listar tarefas feitas");
                 case "7" -> System.out.println("Listar tarefas não feitas");
+                case "8" -> gestorTarefas.listarTarefas();
+                case "9" -> gestorTarefas.salvarTarefas();
+                case "10" -> gestorTarefas.carregarTarefas();
                 case "0" -> {
                     exibirMenu = false;
                     System.out.println("Saindo...");

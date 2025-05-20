@@ -28,4 +28,10 @@ public class GestaoTarefas {
         System.out.println("Carregando tarefas...");
         // Implementar lógica de carregar tarefas
     }
+    public void listarTarefas() {
+        System.out.println("Listando tarefas...");
+        for (var tarefa : servicoTarefas.listarTarefas()) {
+            System.out.printf("ID: %d, Nome: %s, Feita: %b%n", tarefa.id(), tarefa.nome(), tarefa.feita());
+        }
+    }
 }
