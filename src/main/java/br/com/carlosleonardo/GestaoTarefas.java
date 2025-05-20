@@ -1,13 +1,10 @@
 package br.com.carlosleonardo;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Scanner;
 
 public class GestaoTarefas {
     private final Scanner leitor;
-    private int indice = -1;
-    private final List<TarefaRecord> tarefas = new ArrayList<>();
+    private final ServicoTarefas servicoTarefas = new ServicoTarefas();
 
     public GestaoTarefas(Scanner leitor) {
         this.leitor = leitor;
@@ -21,8 +18,7 @@ public class GestaoTarefas {
             System.out.print("Nome da tarefa: ");
             nome = leitor.nextLine();
         }
-        var tarefa = new TarefaRecord(++indice, nome, false);
-        tarefas.add(tarefa);
+        servicoTarefas.adicionar(nome);
     }
     public void salvarTarefas() {
         System.out.println("Salvando tarefas...");
