@@ -7,6 +7,7 @@ public class Tarefa {
 
         boolean exibirMenu = true;
         var leitor = new Scanner(System.in);
+        var gestorTarefas = new GestaoTarefas(leitor);
         do {
             System.out.println("Tarefas");
             System.out.println("=========================");
@@ -18,12 +19,14 @@ public class Tarefa {
             System.out.println("5 - Desmarcar tarefa como feita");
             System.out.println("6 - Listar tarefas feitas");
             System.out.println("7 - Listar tarefas não feitas");
+            System.out.println("8 - Salvar tarefas");
+            System.out.println("9 - Carregar tarefas");
             System.out.println("0 - Sair");
             System.out.println("=========================");
             System.out.print("Escolha uma operação: ");
             var opcao = leitor.nextLine();
             switch (opcao) {
-                case "1" -> System.out.println("Adicionar tarefa");
+                case "1" -> gestorTarefas.adicionar();
                 case "2" -> System.out.println("Listar tarefas");
                 case "3" -> System.out.println("Remover tarefa");
                 case "4" -> System.out.println("Marcar tarefa como feita");
