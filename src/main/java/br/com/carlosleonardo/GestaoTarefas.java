@@ -20,15 +20,38 @@ public class GestaoTarefas {
         }
         servicoTarefas.adicionar(nome);
     }
+
     public void salvarTarefas() {
         System.out.println("Salvando tarefas...");
         // Implementar lógica de salvar tarefas
     }
+
     public void carregarTarefas() {
         System.out.println("Carregando tarefas...");
         // Implementar lógica de carregar tarefas
     }
+
     public void listarTarefas() {
+
+        System.out.print("Mostrar: concluídas/não-concluídas/todas (c/n/t): ");
+        var opcao = leitor.nextLine();
+        while (!opcao.equals("c") && !opcao.equals("n") && !opcao.equals("t")) {
+            System.out.println("Opção inválida. Tente novamente.");
+            System.out.print("Mostrar: concluídas/não-concluídas/todas (c/n/t): ");
+            opcao = leitor.nextLine();
+        }
+        var listaFiltrada = switch (opcao) {
+            case "c" -> servicoTarefas.listarTarefas().stream().filter(TarefaRecord::feita).toList();
+            case "n" -> servicoTarefas.listarTarefas().stream().filter( tarefa -> !tarefa.feita()).toList();
+            case "t" -> servicoTarefas.listarTarefas();
+            default -> servicoTarefas.listarTarefas();
+        };
+        var tamanho = listaFiltrada.size();
+        if (tamanho == 0) {
+            System.out.println("Nenhuma tarefa encontrada.");
+            return;
+        }
+        System.out.println("Tarefas encontradas: " + tamanho);
         System.out.println("Listando tarefas...");
         for (var tarefa : servicoTarefas.listarTarefas()) {
             System.out.printf("ID: %d, Nome: %s, Feita: %b%n", tarefa.id(), tarefa.nome(), tarefa.feita());
