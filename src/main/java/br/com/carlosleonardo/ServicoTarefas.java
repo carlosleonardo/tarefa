@@ -1,5 +1,12 @@
 package br.com.carlosleonardo;
 
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -35,5 +42,29 @@ public class ServicoTarefas {
 
     public List<TarefaRecord> listarTarefas() {
         return new ArrayList<>(tarefas);
+    }
+    public void salvarTarefas() throws IOException {
+        var gson = new Gson();
+        var json = gson.toJson(tarefas);
+        try (var writer = new FileWriter("tarefas.json")) {
+            writer.write(json);
+        } catch (java.io.IOException e) {
+            throw e;
+        }
+
+    }
+    public void carregarTarefas() throws IOException {
+        var gson = new Gson();
+        try (var reader = new FileReader("tarefas.json")) {
+            Type tipoItemLista = new TypeToken<List<TarefaRecord>>() {}.getType();
+            List<TarefaRecord> tarefasCarregadas = gson.fromJson(reader, tipoItemLista);
+            if (tarefasCarregadas != null) {
+                tarefas.clear();
+                tarefas.addAll(tarefasCarregadas);
+                indice = tarefas.stream().mapToInt(TarefaRecord::id).max().orElse(-1);
+            }
+        } catch (IOException e) {
+            throw e;
+        }
     }
 }

@@ -1,5 +1,6 @@
 package br.com.carlosleonardo;
 
+import java.io.IOException;
 import java.util.Scanner;
 
 public class GestaoTarefas {
@@ -23,12 +24,22 @@ public class GestaoTarefas {
 
     public void salvarTarefas() {
         System.out.println("Salvando tarefas...");
-        // Implementar lógica de salvar tarefas
+        try {
+            servicoTarefas.salvarTarefas();
+            System.out.println("Tarefas salvas com sucesso.");
+        } catch (IOException e) {
+            System.out.printf("Erro ao salvar tarefas: %s%n", e.getMessage());
+        }
     }
 
     public void carregarTarefas() {
         System.out.println("Carregando tarefas...");
-        // Implementar lógica de carregar tarefas
+        try {
+            servicoTarefas.carregarTarefas();
+            System.out.println("Tarefas carregadas com sucesso.");
+        } catch (IOException e) {
+            System.out.printf("Erro ao carregar tarefas: %s%n", e.getMessage());
+        }
     }
 
     public void listarTarefas() {
@@ -53,7 +64,7 @@ public class GestaoTarefas {
         }
         System.out.println("Tarefas encontradas: " + tamanho);
         System.out.println("Listando tarefas...");
-        for (var tarefa : servicoTarefas.listarTarefas()) {
+        for (var tarefa : listaFiltrada) {
             System.out.printf("ID: %d, Nome: %s, Feita: %b%n", tarefa.id(), tarefa.nome(), tarefa.feita());
         }
     }

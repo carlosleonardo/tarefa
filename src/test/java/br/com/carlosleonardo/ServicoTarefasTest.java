@@ -37,4 +37,16 @@ class ServicoTarefasTest {
         var tarefa = servicoTarefas.obterPorId(0);
         assertTrue(tarefa.feita());
     }
+    @org.junit.jupiter.api.Test
+    void salvarTarefas() {
+        var servicoTarefas = new ServicoTarefas();
+        servicoTarefas.adicionar("Tarefa 1");
+        assertDoesNotThrow(servicoTarefas::salvarTarefas);
+    }
+    @org.junit.jupiter.api.Test
+    void carregarTarefas() {
+        var servicoTarefas = new ServicoTarefas();
+        servicoTarefas.adicionar("Tarefa 1");
+        assertDoesNotThrow(servicoTarefas::carregarTarefas);
+    }
 }
