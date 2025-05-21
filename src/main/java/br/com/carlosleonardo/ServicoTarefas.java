@@ -59,7 +59,6 @@ public class ServicoTarefas {
             Type tipoItemLista = new TypeToken<List<TarefaRecord>>() {}.getType();
             List<TarefaRecord> tarefasCarregadas = gson.fromJson(reader, tipoItemLista);
             if (tarefasCarregadas != null) {
-                tarefas.clear();
                 tarefas.addAll(tarefasCarregadas);
                 indice = tarefas.stream().mapToInt(TarefaRecord::id).max().orElse(-1);
             }

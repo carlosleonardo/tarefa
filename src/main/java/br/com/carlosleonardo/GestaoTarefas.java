@@ -53,8 +53,7 @@ public class GestaoTarefas {
         }
         var listaFiltrada = switch (opcao) {
             case "c" -> servicoTarefas.listarTarefas().stream().filter(TarefaRecord::feita).toList();
-            case "n" -> servicoTarefas.listarTarefas().stream().filter( tarefa -> !tarefa.feita()).toList();
-            case "t" -> servicoTarefas.listarTarefas();
+            case "n" -> servicoTarefas.listarTarefas().stream().filter(tarefa -> !tarefa.feita()).toList();
             default -> servicoTarefas.listarTarefas();
         };
         var tamanho = listaFiltrada.size();
@@ -65,7 +64,7 @@ public class GestaoTarefas {
         System.out.println("Tarefas encontradas: " + tamanho);
         System.out.println("Listando tarefas...");
         for (var tarefa : listaFiltrada) {
-            System.out.printf("ID: %d, Nome: %s, Feita: %b%n", tarefa.id(), tarefa.nome(), tarefa.feita());
+            System.out.printf("ID %d - Nome: %s, Feita: [%s]%n", tarefa.id(), tarefa.nome(), tarefa.feita() ? "X" : " ");
         }
     }
 }

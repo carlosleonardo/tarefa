@@ -8,6 +8,7 @@ public class Tarefa {
         boolean exibirMenu = true;
         var leitor = new Scanner(System.in);
         var gestorTarefas = new GestaoTarefas(leitor);
+        gestorTarefas.carregarTarefas();
         do {
             System.out.println("Tarefas");
             System.out.println("=========================");
@@ -17,8 +18,6 @@ public class Tarefa {
             System.out.println("3 - Remover tarefa");
             System.out.println("4 - Marcar/Desmarcar tarefa como feita");
             System.out.println("5 - Listar Tarefas");
-            System.out.println("6 - Salvar tarefas");
-            System.out.println("7 - Carregar tarefas");
             System.out.println("0 - Sair");
             System.out.println("=========================");
             System.out.print("Escolha uma operação: ");
@@ -29,10 +28,9 @@ public class Tarefa {
                 case "3" -> System.out.println("Remover tarefa");
                 case "4" -> System.out.println("Marcar/Desmarcar tarefa como feita");
                 case "5" -> gestorTarefas.listarTarefas();
-                case "6" -> gestorTarefas.salvarTarefas();
-                case "7" -> gestorTarefas.carregarTarefas();
                 case "0" -> {
                     exibirMenu = false;
+                    gestorTarefas.salvarTarefas();
                     System.out.println("Saindo...");
                 }
                 default -> System.out.println("Opção inválida. Tente novamente.");
