@@ -17,27 +17,24 @@ public class ServicoTarefas {
         var tarefa = new TarefaRecord(++indice, nome, false);
         tarefas.add(tarefa);
     }
-    public boolean remover(int indice) {
-        if (indice < 0 || indice >= tarefas.size()) {
+    public boolean remover(int chaveTarefa) {
+        var tarefa = obterPorId(chaveTarefa);
+        if (tarefa == null) {
             return false;
         }
-        tarefas.remove(indice);
-        return true;
+        return tarefas.remove(tarefa);
     }
-    public TarefaRecord obterPorId(int indice) {
-        if (indice < 0 || indice >= tarefas.size()) {
-            return null;
-        }
-        var tarefa = tarefas.get(indice);
-        return tarefa;
+    public TarefaRecord obterPorId(int chaveTarefa) {
+        var tarefa = tarefas.stream().findAny().filter(t -> t.id() == chaveTarefa);
+        return tarefa.orElse(null);
     }
-    public void finalizar(int indice, boolean finalizada) {
-        if (indice < 0 || indice >= tarefas.size()) {
+    public void finalizar(int chaveTarefa, boolean finalizada) {
+        var tarefa = obterPorId(chaveTarefa);
+        if (tarefa == null) {
             return;
         }
-        var tarefa = tarefas.get(indice);
         var tarefaNova = new TarefaRecord(tarefa.id(), tarefa.nome(), finalizada);
-        tarefas.set(indice, tarefaNova);
+        tarefas.set(tarefas.indexOf(tarefa), tarefaNova);
     }
 
     public List<TarefaRecord> listarTarefas() {
@@ -65,5 +62,13 @@ public class ServicoTarefas {
         } catch (IOException e) {
             throw e;
         }
+    }
+    public void alterarTarefa(int chaveTarefa, String novoNome) {
+        var tarefa = obterPorId(chaveTarefa);
+        if (tarefa == null) {
+            return;
+        }
+        var tarefaNova = new TarefaRecord(tarefa.id(), novoNome, tarefa.feita());
+        tarefas.set(tarefas.indexOf(tarefa), tarefaNova);
     }
 }

@@ -21,6 +21,29 @@ public class GestaoTarefas {
         }
         servicoTarefas.adicionar(nome);
     }
+    public void alterarTarefa()
+    {
+        System.out.print("ID da tarefa: ");
+        var id = leitor.nextLine();
+        while (id.isBlank()) {
+            System.out.println("ID da tarefa não pode ser vazio.");
+            System.out.print("ID da tarefa: ");
+            id = leitor.nextLine();
+        }
+        var tarefa = servicoTarefas.obterPorId(Integer.parseInt(id));
+        if (tarefa == null) {
+            System.out.println("Tarefa não encontrada.");
+            return;
+        }
+        System.out.print("Novo nome da tarefa: ");
+        var novoNome = leitor.nextLine();
+        while (novoNome.isBlank()) {
+            System.out.println("Nome da tarefa não pode ser vazio.");
+            System.out.print("Novo nome da tarefa: ");
+            novoNome = leitor.nextLine();
+        }
+        servicoTarefas.alterarTarefa(tarefa.id(), novoNome);
+    }
 
     public void salvarTarefas() {
         System.out.println("Salvando tarefas...");

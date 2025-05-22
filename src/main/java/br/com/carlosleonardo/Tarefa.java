@@ -24,7 +24,7 @@ public class Tarefa {
             var opcao = leitor.nextLine();
             switch (opcao) {
                 case "1" -> gestorTarefas.adicionar();
-                case "2" -> System.out.println("Alterar Tarefa");
+                case "2" -> gestorTarefas.alterarTarefa();
                 case "3" -> System.out.println("Remover tarefa");
                 case "4" -> System.out.println("Marcar/Desmarcar tarefa como feita");
                 case "5" -> gestorTarefas.listarTarefas();

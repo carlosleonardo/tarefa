@@ -1,10 +1,12 @@
 package br.com.carlosleonardo;
 
+import org.junit.jupiter.api.Test;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 class ServicoTarefasTest {
 
-    @org.junit.jupiter.api.Test
+    @Test
     void adicionar() {
         var servicoTarefas = new ServicoTarefas();
         servicoTarefas.adicionar("Tarefa 1");
@@ -12,7 +14,7 @@ class ServicoTarefasTest {
         assertNotNull(tarefa);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     void remover() {
         var servicoTarefas = new ServicoTarefas();
         servicoTarefas.adicionar("Tarefa 1");
@@ -21,7 +23,7 @@ class ServicoTarefasTest {
         assertNull(tarefa);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     void obterPorId() {
         var servicoTarefas = new ServicoTarefas();
         servicoTarefas.adicionar("Tarefa 1");
@@ -29,7 +31,7 @@ class ServicoTarefasTest {
         assertNotNull(tarefa);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     void finalizar() {
         var servicoTarefas = new ServicoTarefas();
         servicoTarefas.adicionar("Tarefa 1");
@@ -37,16 +39,26 @@ class ServicoTarefasTest {
         var tarefa = servicoTarefas.obterPorId(0);
         assertTrue(tarefa.feita());
     }
-    @org.junit.jupiter.api.Test
+    @Test
     void salvarTarefas() {
         var servicoTarefas = new ServicoTarefas();
         servicoTarefas.adicionar("Tarefa 1");
         assertDoesNotThrow(servicoTarefas::salvarTarefas);
     }
-    @org.junit.jupiter.api.Test
+    @Test
     void carregarTarefas() {
         var servicoTarefas = new ServicoTarefas();
         servicoTarefas.adicionar("Tarefa 1");
         assertDoesNotThrow(servicoTarefas::carregarTarefas);
+    }
+    @Test
+    void alterarTarefa() {
+        var servicoTarefas = new ServicoTarefas();
+        String valorEsperado = "Tarefa Alterada";
+
+        servicoTarefas.adicionar("Tarefa 1");
+        servicoTarefas.alterarTarefa(0, valorEsperado);
+        var tarefa = servicoTarefas.obterPorId(0);
+        assertEquals(valorEsperado, tarefa.nome());
     }
 }
