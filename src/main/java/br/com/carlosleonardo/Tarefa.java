@@ -26,7 +26,7 @@ public class Tarefa {
                 case "1" -> gestorTarefas.adicionar();
                 case "2" -> gestorTarefas.alterarTarefa();
                 case "3" -> gestorTarefas.removerTarefa();
-                case "4" -> System.out.println("Marcar/Desmarcar tarefa como feita");
+                case "4" -> gestorTarefas.marcarDesmarcarTarefa();
                 case "5" -> gestorTarefas.listarTarefas();
                 case "0" -> {
                     exibirMenu = false;

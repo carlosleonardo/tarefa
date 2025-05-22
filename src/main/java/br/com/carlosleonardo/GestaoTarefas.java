@@ -105,4 +105,19 @@ public class GestaoTarefas {
         }
         servicoTarefas.remover(tarefa.id());
     }
+    public void marcarDesmarcarTarefa() {
+        System.out.print("ID da tarefa: ");
+        var id = leitor.nextLine();
+        while (id.isBlank()) {
+            System.out.println("ID da tarefa não pode ser vazio.");
+            System.out.print("ID da tarefa: ");
+            id = leitor.nextLine();
+        }
+        var tarefa = servicoTarefas.obterPorId(Integer.parseInt(id));
+        if (tarefa == null) {
+            System.out.println("Tarefa não encontrada.");
+            return;
+        }
+        servicoTarefas.finalizar(tarefa.id(), !tarefa.feita());
+    }
 }
