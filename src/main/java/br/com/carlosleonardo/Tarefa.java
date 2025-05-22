@@ -25,7 +25,7 @@ public class Tarefa {
             switch (opcao) {
                 case "1" -> gestorTarefas.adicionar();
                 case "2" -> gestorTarefas.alterarTarefa();
-                case "3" -> System.out.println("Remover tarefa");
+                case "3" -> gestorTarefas.removerTarefa();
                 case "4" -> System.out.println("Marcar/Desmarcar tarefa como feita");
                 case "5" -> gestorTarefas.listarTarefas();
                 case "0" -> {

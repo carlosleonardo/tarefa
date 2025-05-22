@@ -66,7 +66,7 @@ public class GestaoTarefas {
     }
 
     public void listarTarefas() {
-
+        System.out.println("---------- Listar tarefas ----------");
         System.out.print("Mostrar: concluídas/não-concluídas/todas (c/n/t): ");
         var opcao = leitor.nextLine();
         while (!opcao.equals("c") && !opcao.equals("n") && !opcao.equals("t")) {
@@ -89,5 +89,20 @@ public class GestaoTarefas {
         for (var tarefa : listaFiltrada) {
             System.out.printf("ID %d - Nome: %s, Feita: [%s]%n", tarefa.id(), tarefa.nome(), tarefa.feita() ? "X" : " ");
         }
+    }
+    public void removerTarefa() {
+        System.out.print("ID da tarefa: ");
+        var id = leitor.nextLine();
+        while (id.isBlank()) {
+            System.out.println("ID da tarefa não pode ser vazio.");
+            System.out.print("ID da tarefa: ");
+            id = leitor.nextLine();
+        }
+        var tarefa = servicoTarefas.obterPorId(Integer.parseInt(id));
+        if (tarefa == null) {
+            System.out.println("Tarefa não encontrada.");
+            return;
+        }
+        servicoTarefas.remover(tarefa.id());
     }
 }
