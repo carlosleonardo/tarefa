@@ -36,7 +36,7 @@ public class Tarefa {
                 default -> System.out.println("Opção inválida. Tente novamente.");
             }
         } while (exibirMenu);
-
+        leitor.close();
 
     }
 }
