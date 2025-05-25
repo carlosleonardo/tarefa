@@ -38,7 +38,7 @@ public class ServicoTarefas {
     }
 
     public List<TarefaRecord> listarTarefas() {
-        return new ArrayList<>(tarefas);
+        return List.copyOf(tarefas);
     }
     public void salvarTarefas() throws IOException {
         var gson = new Gson();
