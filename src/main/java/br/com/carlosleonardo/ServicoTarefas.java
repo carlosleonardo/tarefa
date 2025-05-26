@@ -13,6 +13,8 @@ import java.util.List;
 public class ServicoTarefas {
     private int indice = -1;
     private final List<TarefaRecord> tarefas = new ArrayList<>();
+    private final String ARQUIVO_TAREFAS = "tarefas.json";
+
     public void adicionar(String nome) {
         var tarefa = new TarefaRecord(++indice, nome, false);
         tarefas.add(tarefa);
@@ -43,7 +45,7 @@ public class ServicoTarefas {
     public void salvarTarefas() throws IOException {
         var gson = new Gson();
         var json = gson.toJson(tarefas);
-        try (var writer = new FileWriter("tarefas.json")) {
+        try (var writer = new FileWriter(ARQUIVO_TAREFAS)) {
             writer.write(json);
         } catch (java.io.IOException e) {
             throw e;
@@ -52,7 +54,7 @@ public class ServicoTarefas {
     }
     public void carregarTarefas() throws IOException {
         var gson = new Gson();
-        try (var reader = new FileReader("tarefas.json")) {
+        try (var reader = new FileReader(ARQUIVO_TAREFAS)) {
             Type tipoItemLista = new TypeToken<List<TarefaRecord>>() {}.getType();
             List<TarefaRecord> tarefasCarregadas = gson.fromJson(reader, tipoItemLista);
             if (tarefasCarregadas != null) {
