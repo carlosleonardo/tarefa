@@ -27,7 +27,7 @@ public class ServicoTarefas {
         return tarefas.remove(tarefa);
     }
     public TarefaRecord obterPorId(int chaveTarefa) {
-        var tarefa = tarefas.stream().findAny().filter(t -> t.id() == chaveTarefa);
+        var tarefa = tarefas.stream().filter(t -> t.id() == chaveTarefa).findFirst();
         return tarefa.orElse(null);
     }
     public void finalizar(int chaveTarefa, boolean finalizada) {
